@@ -41,7 +41,6 @@ namespace PM.biblioteca
             bool abriuConexao = false;
             object retorno = new object();
 
-
             if (cmd.Connection.State == ConnectionState.Closed)
             {
                 abriuConexao = true;

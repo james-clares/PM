@@ -23,13 +23,11 @@ namespace PM.scripts.admin.usuarios
 
             func.CadastrarFuncionario(txtCpf.Text, txtNome.Text, txtSenha.Text, txtEmail.Text, txtCoren.Text, uf);
             Response.Redirect("/scripts/admin/usuarios/index.aspx");
-
         }
 
         protected void btnVoltar_Click(object sender, EventArgs e)
         {
             Response.Redirect("/scripts/admin/usuarios/index.aspx");
         }
-
     }
 }

@@ -15,11 +15,11 @@ namespace PM.biblioteca
     {
         public void CadastrarUsuario(string cpf, string nome, string senha, string email, string sexo, string dataNasc, string rg, string endereco, string cep, string telefone, string telefoneCel)
         {
-            System.Data.SqlClient.SqlConnection conn = BancoDeDados.CriarConexao();
+            SqlConnection conn = BancoDeDados.CriarConexao();
 
             string sql = "INSERT INTO pm_usuario VALUES (@cpf, @nome, @senha, 1, @email, @sexo, @dataNasc, @rg, @endereco, @cep, @telefone, @telefoneCel, dateadd(hour,+3,getdate())";
 
-            System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(sql, conn);
+            SqlCommand cmd = new SqlCommand(sql, conn);
 
             cmd.Parameters.AddWithValue("@cpf", cpf);
             cmd.Parameters.AddWithValue("@nome", nome);
@@ -43,7 +43,7 @@ namespace PM.biblioteca
 
             string sql = "INSERT INTO pm_funcionario VALUES (@cpf, @nome, @senha, @email, @coren, @uf, dateadd(hour,+3,getdate())";
 
-            SqlCommand cmd = new System.Data.SqlClient.SqlCommand(sql, conn);
+            SqlCommand cmd = new SqlCommand(sql, conn);
 
             cmd.Parameters.AddWithValue("@cpf", cpf);
             cmd.Parameters.AddWithValue("@nome", nome);
@@ -87,7 +87,6 @@ namespace PM.biblioteca
             }
 
             return validarUsuario;
-
         }
 
 
@@ -150,16 +149,12 @@ namespace PM.biblioteca
 
             }
 
-
             if (output == "1")
             {
                 validarUsuario = true;
                 return validarUsuario;
             }
-
             return validarUsuario;
-
-
         }
 
         public bool acessoUsuarioAdm(string email, string senha)
@@ -187,7 +182,6 @@ namespace PM.biblioteca
 
             }
 
-
             if (output == "1")
             {
                 validarUsuario = true;
@@ -195,14 +189,12 @@ namespace PM.biblioteca
             }
 
             return validarUsuario;
-
-
         }
 
 
         public string retornaNome(string email)
         {
-            System.Data.SqlClient.SqlConnection conn = BancoDeDados.CriarConexao();
+            SqlConnection conn = BancoDeDados.CriarConexao();
 
             conn.Open();
 
@@ -219,7 +211,7 @@ namespace PM.biblioteca
 
         public string retornaIdUsuario(string email)
         {
-            System.Data.SqlClient.SqlConnection conn = BancoDeDados.CriarConexao();
+            SqlConnection conn = BancoDeDados.CriarConexao();
 
             conn.Open();
 
@@ -236,7 +228,7 @@ namespace PM.biblioteca
 
         public string retornaCoren(string email)
         {
-            System.Data.SqlClient.SqlConnection conn = BancoDeDados.CriarConexao();
+            SqlConnection conn = BancoDeDados.CriarConexao();
 
             conn.Open();
 
@@ -253,7 +245,7 @@ namespace PM.biblioteca
 
         public string retornaIdFuncionario(string email)
         {
-            System.Data.SqlClient.SqlConnection conn = BancoDeDados.CriarConexao();
+            SqlConnection conn = BancoDeDados.CriarConexao();
 
             conn.Open();
 
@@ -270,7 +262,7 @@ namespace PM.biblioteca
 
         public string retornaCPF(string email)
         {
-            System.Data.SqlClient.SqlConnection conn = BancoDeDados.CriarConexao();
+            SqlConnection conn = BancoDeDados.CriarConexao();
 
             conn.Open();
 
@@ -306,7 +298,6 @@ namespace PM.biblioteca
             ad.Fill(dt);
 
             return dt;
-
         }
 
         public DataTable RetornarUsuarioVacinado(string idUsuario)
@@ -322,8 +313,6 @@ namespace PM.biblioteca
                               "INNER JOIN pm_funcionario f ON uv.fk_idFuncionario = f.idFuncionario " +
                               "WHERE u.idUsuario = @idUsuario",
                 CommandType = CommandType.Text
-
-
             };
 
             cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
@@ -335,7 +324,6 @@ namespace PM.biblioteca
             ad.Fill(dt);
 
             return dt;
-
         }
         public bool validarCpf(string cpf)
         {
